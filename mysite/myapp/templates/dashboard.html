@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>Dashboard</title>
+  </head>
+  {% load static %}
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+  <nav class="navbar navbar-dark bg-dark justify-content-center">
+    <div class="container">
+      <a class="navbar-brand" href="">
+      <img src="{% static 'myapp/analysis.png' %}" alt="S" width="48" height="48">
+        Sentiment Analyser
+      </a>
+    </div>
+      </nav>
+
+    <div style="text-align:center;margin-top:50px;"><img src="{% static 'myapp/output2.png' %}" alt="S" width="128" height="128"></div><br>
+    <div content="column">
+      <p style="text-align:center;font-size:30px;">
+         Data Insights
+        <img src="{% static 'myapp/insights.png' %}" alt="S" width="32" height="32"><p>
+      </p>
+    </div>
+<div class="row row-cols-1 row-cols-md-2 g-4 text-center" style="padding:50px;">
+  <div class="col">
+    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+      <div class="card-body">
+        <h2 class="card-title">Confusion Matrix</h2>
+        <p class="card-text">{{ graph|safe }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+      <div class="card-body">
+        <h3 class="card-title">Most Common Words Used in Feedback</h3>
+        <p class="card-text">{{ wordcloud|safe }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+      <div class="card-body">
+        <h2 class="card-title">Feedback Percentage</h2>
+        <p class="card-text">{{ piechart|safe }}</p>
+      </div>
+    </div>
+  </div>
+    <div class="col">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+          <h2 class="card-title">Classification Report</h2>
+          <p class="card-text">
+          <br><br><br>
+
+            <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Precision</th>
+              <th scope="col">Recall</th>
+              <th scope="col">F1-Score</th>
+              <th scope="col">Support</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">-1</th>
+              <td>{{negativeReviewPrecision}}</td>
+              <td>{{negativeReviewRecall}}</td>
+              <td>{{negativeReviewF1Score}}</td>
+              <td>{{negativeReviewSupport}}</td>
+            </tr>
+            <tr>
+              <th scope="row">0</th>
+              <td>{{neutralReviewPrecision}}</td>
+              <td>{{neutralReviewRecall}}</td>
+              <td>{{neutralReviewF1Score}}</td>
+              <td>{{neutralReviewSupport}}</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>{{positiveReviewPrecision}}</td>
+              <td>{{positiveReviewRecall}}</td>
+              <td>{{positiveReviewF1Score}}</td>
+              <td>{{positiveReviewSupport}}</td>
+            </tr>
+          <tr>
+              <th scope="row">Accuracy</th>
+              <td></td>
+              <td></td>
+              <td>{{accuracy}}</td>
+              <td></td>
+            </tr>
+          <tr>
+              <th scope="row">Macro Avg</th>
+              <td>{{macro_avg_precision}}</td>
+              <td>{{macro_avg_recall}}</td>
+              <td>{{macro_avg_F1Score}}</td>
+              <td>{{macro_avg_Support}}</td>
+            </tr>
+          <tr>
+              <th scope="row">Weighted Avg</th>
+              <td>{{weighted_avg_precision}}</td>
+              <td>{{weighted_avg_recall}}</td>
+              <td>{{weighted_avg_F1Score}}</td>
+              <td>{{weighted_avg_Support}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+          <br><br><br>
+
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>Dashboard</title>
+  {% load static %}
+  </head>
+  <nav class="navbar navbar-dark bg-dark justify-content-center">
+    <div class="container">
+      <a class="navbar-brand" href="">
+      <img src="{% static 'myapp/analysis.png' %}" alt="S" width="48" height="48">
+        Sentiment Analyser
+      </a>
+    </div>
+      </nav>
+  {% load static %}
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <div style="text-align:center;margin-top:50px;">
+      <form method="POST">
+      {% csrf_token %}
+        <img src="{% static 'myapp/test.png' %}" alt="S" width="128" height="128"><br><br>
+      <button class="btn btn-dark btn-lg px-5" type="submit">Test & Train</button>
+    </form>
+    </div>
+  <div style="padding:50px;">
+
+    <p class="navbar-brand">
+      <img src="{% static 'myapp/positive.png' %}" alt="S" width="24" height="24">
+      <img src="{% static 'myapp/negative.png' %}" alt="S" width="24" height="24">
+      <img src="{% static 'myapp/neutral.png' %}" alt="S" width="24" height="24">
+      <img src="{% static 'myapp/comment.png' %}" alt="S" width="24" height="24">
+        {{enum_list_len}}
+      </p>
+
+    <table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Feedback</th>
+      <th scope="col">Point</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for feedback,points in enum_list %}
+  <tr>
+      <td>{{ feedback }}</td>
+      <td>{{ points }}</td>
+
+
+  </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+  </div>
+
+  </body>
+</html>
